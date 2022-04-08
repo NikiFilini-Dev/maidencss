@@ -7,12 +7,13 @@ import { Schema } from './types'
 export class ColorsProcessor extends BaseProcessor {
   constructor(protected schema: Schema) {
     super()
-    let colors = schema.colors
-    if (colors._extend) {
+    let colors = schema.colors.palette
+    if (schema.colors._extend) {
       let extended = {}
-      if (typeof colors._extend === 'string') colors._extend = [colors._extend]
+      if (typeof schema.colors._extend === 'string')
+        schema.colors._extend = [schema.colors._extend]
 
-      colors._extend.forEach((presetName) => {
+      schema.colors._extend.forEach((presetName) => {
         extended = deepMerge.merge(extended, colorPresets[presetName])
       })
 

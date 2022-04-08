@@ -8,14 +8,16 @@ export type Spacing = {
 }
 
 export type Color = {
-  [key: number]: string
+  [key: number | string]: string
 }
 
 export type Schema = {
   out: string
   colors: {
     _extend?: ColorPresetName | ColorPresetName[]
-    [key: string]: string | Color
+    palette: {
+      [key: string]: string | Color
+    }
   }
   spacings: {
     [key: string]: Spacing
