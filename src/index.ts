@@ -23,21 +23,24 @@ async function main() {
 
   await fs.ensureDir(outDir)
 
-  if ('spacings' in schema) {
-    const spacingsGenerator = new SpacingsProcessor(schema)
-    await fs.writeFile(
-      path.join(outDir, 'spacings.css'),
-      spacingsGenerator.content,
-    )
-  }
-
-  if ('colors' in schema) {
-    const colorsGenerator = new ColorsProcessor(schema)
-    await fs.writeFile(path.join(outDir, 'colors.css'), colorsGenerator.content)
-  }
-
+  console.log('Generating spacings...')
+  const spacingsGenerator = new SpacingsProcessor(schema)
+  console.log('Generating colors...')
+  const colorsGenerator = new ColorsProcessor(schema)
+  console.log('Generating imports...')
   const importsGenerator = new ImportsProcessor(schema)
+  console.log()
+
+  console.log('Writing imports...')
   await fs.writeFile(path.join(outDir, 'index.css'), importsGenerator.content)
+  console.log('Writing spacings...')
+  await fs.writeFile(
+    path.join(outDir, 'spacings.css'),
+    spacingsGenerator.content,
+  )
+  console.log('Writing colors...')
+  await fs.writeFile(path.join(outDir, 'colors.css'), colorsGenerator.content)
+  console.log('Done!')
 }
 
 main()

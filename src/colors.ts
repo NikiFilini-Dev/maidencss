@@ -39,7 +39,7 @@ export class ColorsProcessor extends BaseProcessor {
         const fullName = colorName + '-' + colorSubname
         this._content += `// Color - ${colorName}\n`
 
-        vars += this._content += this.generateSingleColorVars(
+        vars += this.generateSingleColorVars(
           fullName,
           colors[colorName][colorSubname],
         )

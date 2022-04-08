@@ -50,16 +50,20 @@ async function main() {
     }
     const outDir = path.join(root, schema.out);
     await fs_extra_1.default.ensureDir(outDir);
-    if ('spacings' in schema) {
-        const spacingsGenerator = new spacings_1.SpacingsProcessor(schema);
-        await fs_extra_1.default.writeFile(path.join(outDir, 'spacings.css'), spacingsGenerator.content);
-    }
-    if ('colors' in schema) {
-        const colorsGenerator = new colors_1.ColorsProcessor(schema);
-        await fs_extra_1.default.writeFile(path.join(outDir, 'colors.css'), colorsGenerator.content);
-    }
+    console.log('Generating spacings...');
+    const spacingsGenerator = new spacings_1.SpacingsProcessor(schema);
+    console.log('Generating colors...');
+    const colorsGenerator = new colors_1.ColorsProcessor(schema);
+    console.log('Generating imports...');
     const importsGenerator = new imports_1.ImportsProcessor(schema);
+    console.log();
+    console.log('Writing imports...');
     await fs_extra_1.default.writeFile(path.join(outDir, 'index.css'), importsGenerator.content);
+    console.log('Writing spacings...');
+    await fs_extra_1.default.writeFile(path.join(outDir, 'spacings.css'), spacingsGenerator.content);
+    console.log('Writing colors...');
+    await fs_extra_1.default.writeFile(path.join(outDir, 'colors.css'), colorsGenerator.content);
+    console.log('Done!');
 }
 main();
 __exportStar(require("./utils"), exports);

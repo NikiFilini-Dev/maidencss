@@ -33,7 +33,7 @@ class SpacingsProcessor extends baseProcessor_1.BaseProcessor {
         this._content += ':root {\n';
         this._content += vars;
         this._content += '}\n\n';
-        this._content = spacingsFile;
+        this._content += spacingsFile;
         this.formatDocument();
     }
     generateSpacingRules(name, spacing, start, end) {

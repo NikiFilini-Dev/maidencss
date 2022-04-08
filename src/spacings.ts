@@ -40,7 +40,7 @@ export class SpacingsProcessor extends BaseProcessor {
     this._content += vars
     this._content += '}\n\n'
 
-    this._content = spacingsFile
+    this._content += spacingsFile
     this.formatDocument()
   }
 
