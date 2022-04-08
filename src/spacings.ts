@@ -1,3 +1,5 @@
+import { timeStamp } from 'console'
+
 import { BaseProcessor } from './baseProcessor'
 import { Schema, Spacing } from './types'
 
@@ -14,6 +16,7 @@ export class SpacingsProcessor extends BaseProcessor {
     this.default = { spacing: defaults, end: defaultEnd }
 
     let spacingsFile = ''
+    let vars = ''
 
     for (const spacingName of Object.keys(this.schema.spacings)) {
       if (spacingName === 'default') continue
@@ -30,12 +33,16 @@ export class SpacingsProcessor extends BaseProcessor {
       }
 
       s += ':root {\n'
-      s += this.generateSpacingVars(spacingName, spacing, start, end)
+      vars += this.generateSpacingVars(spacingName, spacing, start, end)
       s += '}\n\n'
       s += this.generateSpacingRules(spacingName, spacing, start, end)
 
       spacingsFile += s
     }
+
+    this._content += ':root {\n'
+    this._content += vars
+    this._content += '}\n\n'
 
     this._content = spacingsFile
     this.formatDocument()

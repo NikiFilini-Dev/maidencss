@@ -21,6 +21,8 @@ export class ColorsProcessor extends BaseProcessor {
     }
     delete colors._extend
 
+    let vars = ''
+
     for (const colorName of Object.keys(colors)) {
       if (typeof colors[colorName] === 'string') {
         this._content += `/* Color - ${colorName} */\n`
@@ -41,12 +43,11 @@ export class ColorsProcessor extends BaseProcessor {
       for (const colorSubname of Object.keys(colors[colorName])) {
         const fullName = colorName + '-' + colorSubname
         this._content += `// Color - ${colorName}\n`
-        this._content += ':root {\n'
-        this._content += this.generateSingleColorVars(
+
+        vars += this._content += this.generateSingleColorVars(
           fullName,
           colors[colorName][colorSubname],
         )
-        this._content += '}\n\n'
 
         this._content += this.generateSingleColorRules(
           fullName,
@@ -55,6 +56,10 @@ export class ColorsProcessor extends BaseProcessor {
         this._content += '\n'
       }
     }
+
+    this._content += ':root {\n'
+    this._content += vars
+    this._content += '}\n\n'
 
     this.formatDocument()
   }
