@@ -23,12 +23,11 @@ class ColorsProcessor extends baseProcessor_1.BaseProcessor {
             colors = lodash_deepmerge_1.default.merge(extended, colors);
         }
         delete colors._extend;
+        let vars = '';
         for (const colorName of Object.keys(colors)) {
             if (typeof colors[colorName] === 'string') {
                 this._content += `/* Color - ${colorName} */\n`;
-                this._content += ':root {\n';
-                this._content += this.generateSingleColorVars(colorName, colors[colorName]);
-                this._content += '}\n\n';
+                vars += this.generateSingleColorVars(colorName, colors[colorName]);
                 this._content += this.generateSingleColorRules(colorName, colors[colorName]);
                 this._content += '\n';
                 continue;
@@ -36,13 +35,14 @@ class ColorsProcessor extends baseProcessor_1.BaseProcessor {
             for (const colorSubname of Object.keys(colors[colorName])) {
                 const fullName = colorName + '-' + colorSubname;
                 this._content += `// Color - ${colorName}\n`;
-                this._content += ':root {\n';
-                this._content += this.generateSingleColorVars(fullName, colors[colorName][colorSubname]);
-                this._content += '}\n\n';
+                vars += this._content += this.generateSingleColorVars(fullName, colors[colorName][colorSubname]);
                 this._content += this.generateSingleColorRules(fullName, colors[colorName][colorSubname]);
                 this._content += '\n';
             }
         }
+        this._content += ':root {\n';
+        this._content += vars;
+        this._content += '}\n\n';
         this.formatDocument();
     }
     generateSingleColorVars(name, value) {

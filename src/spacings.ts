@@ -1,5 +1,3 @@
-import { timeStamp } from 'console'
-
 import { BaseProcessor } from './baseProcessor'
 import { Schema, Spacing } from './types'
 

@@ -12,6 +12,7 @@ class SpacingsProcessor extends baseProcessor_1.BaseProcessor {
         const defaultEnd = this.findEnd(defaults);
         this.default = { spacing: defaults, end: defaultEnd };
         let spacingsFile = '';
+        let vars = '';
         for (const spacingName of Object.keys(this.schema.spacings)) {
             if (spacingName === 'default')
                 continue;
@@ -25,12 +26,13 @@ class SpacingsProcessor extends baseProcessor_1.BaseProcessor {
             catch {
                 end = defaultEnd;
             }
-            s += ':root {\n';
-            s += this.generateSpacingVars(spacingName, spacing, start, end);
-            s += '}\n\n';
+            vars += this.generateSpacingVars(spacingName, spacing, start, end);
             s += this.generateSpacingRules(spacingName, spacing, start, end);
             spacingsFile += s;
         }
+        this._content += ':root {\n';
+        this._content += vars;
+        this._content += '}\n\n';
         this._content = spacingsFile;
         this.formatDocument();
     }
