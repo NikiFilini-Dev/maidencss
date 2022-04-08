@@ -12,12 +12,12 @@ class ColorsProcessor extends baseProcessor_1.BaseProcessor {
     constructor(schema) {
         super();
         this.schema = schema;
-        let colors = schema.colors;
-        if (colors._extend) {
+        let colors = schema.colors.palette;
+        if (schema.colors._extend) {
             let extended = {};
-            if (typeof colors._extend === 'string')
-                colors._extend = [colors._extend];
-            colors._extend.forEach((presetName) => {
+            if (typeof schema.colors._extend === 'string')
+                schema.colors._extend = [schema.colors._extend];
+            schema.colors._extend.forEach((presetName) => {
                 extended = lodash_deepmerge_1.default.merge(extended, presets_1.colorPresets[presetName]);
             });
             colors = lodash_deepmerge_1.default.merge(extended, colors);
