@@ -19,7 +19,7 @@ export class SpacingsProcessor extends BaseProcessor {
       if (spacingName === 'default') continue
 
       const spacing = this.schema.spacings[spacingName]
-      let s = `\n\n\n// Spacing - ${spacingName}\n`
+      let s = `\n\n\n/* Spacing - ${spacingName} */\n`
 
       const start = 1
       let end: number

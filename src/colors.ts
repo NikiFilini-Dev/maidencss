@@ -23,7 +23,7 @@ export class ColorsProcessor extends BaseProcessor {
 
     for (const colorName of Object.keys(colors)) {
       if (typeof colors[colorName] === 'string') {
-        this._content += `// Color - ${colorName}\n`
+        this._content += `/* Color - ${colorName} */\n`
         this._content += ':root {\n'
         this._content += this.generateSingleColorVars(
           colorName,

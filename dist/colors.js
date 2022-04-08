@@ -25,7 +25,7 @@ class ColorsProcessor extends baseProcessor_1.BaseProcessor {
         delete colors._extend;
         for (const colorName of Object.keys(colors)) {
             if (typeof colors[colorName] === 'string') {
-                this._content += `// Color - ${colorName}\n`;
+                this._content += `/* Color - ${colorName} */\n`;
                 this._content += ':root {\n';
                 this._content += this.generateSingleColorVars(colorName, colors[colorName]);
                 this._content += '}\n\n';

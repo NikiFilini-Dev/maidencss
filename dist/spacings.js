@@ -16,7 +16,7 @@ class SpacingsProcessor extends baseProcessor_1.BaseProcessor {
             if (spacingName === 'default')
                 continue;
             const spacing = this.schema.spacings[spacingName];
-            let s = `\n\n\n// Spacing - ${spacingName}\n`;
+            let s = `\n\n\n/* Spacing - ${spacingName} */\n`;
             const start = 1;
             let end;
             try {
