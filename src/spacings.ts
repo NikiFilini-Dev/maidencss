@@ -32,9 +32,7 @@ export class SpacingsProcessor extends BaseProcessor {
         end = defaultEnd
       }
 
-      s += ':root {\n'
       vars += this.generateSpacingVars(spacingName, spacing, start, end)
-      s += '}\n\n'
       s += this.generateSpacingRules(spacingName, spacing, start, end)
 
       spacingsFile += s
