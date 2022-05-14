@@ -34,7 +34,7 @@ class ColorsProcessor extends baseProcessor_1.BaseProcessor {
             }
             for (const colorSubname of Object.keys(colors[colorName])) {
                 const fullName = colorName + '-' + colorSubname;
-                this._content += `// Color - ${colorName}\n`;
+                this._content += `/* Color - ${colorName} */\n`;
                 vars += this.generateSingleColorVars(fullName, colors[colorName][colorSubname]);
                 this._content += this.generateSingleColorRules(fullName, colors[colorName][colorSubname]);
                 this._content += '\n';

@@ -37,7 +37,7 @@ export class ColorsProcessor extends BaseProcessor {
       }
       for (const colorSubname of Object.keys(colors[colorName])) {
         const fullName = colorName + '-' + colorSubname
-        this._content += `// Color - ${colorName}\n`
+        this._content += `/* Color - ${colorName} */\n`
 
         vars += this.generateSingleColorVars(
           fullName,
