@@ -1,1 +1,0 @@
-{"version":3,"file":"utils.js","sourceRoot":"/","sources":["utils.ts"],"names":[],"mappings":";;;AAEO,MAAM,YAAY,GAAG,CAAC,MAAc,EAAE,EAAE,CAAC,MAAM,CAAA;AAAzC,QAAA,YAAY,gBAA6B","sourcesContent":["import { Schema } from './types'\n\nexport const defineSchema = (schema: Schema) => schema\n"]}

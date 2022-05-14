@@ -43,6 +43,9 @@ async function main() {
   console.log('Done!')
 }
 
-main()
+if (require.main === module) {
+  main()
+}
 
 export * from './utils'
+export * from './functions'
